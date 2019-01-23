@@ -1,0 +1,33 @@
+<section>
+  <mat-toolbar color="accent">
+    <span>My Image App</span>
+  </mat-toolbar>
+  <mat-progress-bar mode="indeterminate" color="primary" *ngIf="isShowLoader"></mat-progress-bar>
+  <div class="margin" >
+    <div class="layer" *ngIf="isShowLoader"></div>
+    <mat-card>
+      <mat-card-header class="card-header"  [style.z-index]="isShowLoader?'-1':''">
+        <mat-card-title>Add Image Here</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        <form [formGroup]="imageGroup" (submit)="addImage($event.target)">
+          <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="title" formControlName="title">
+          </mat-form-field>
+          <mat-label>Add Image</mat-label>
+          <br/><br/>
+          <button type="button" mat-raised-button (click)="image.click()" color="accent" style="margin-bottom:1rem"><mat-icon>add</mat-icon></button>
+          <input type="file" hidden #image (change)="add($event.target)"/>
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary">Upload</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+<br/><br/>
+<app-images></app-images>
